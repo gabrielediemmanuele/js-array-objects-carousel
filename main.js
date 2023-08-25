@@ -1,7 +1,7 @@
 const images = [
   {
     image: "./img/marvel-spider-man-miles-morales-iz.jpg",
-    title: "Marvel's Spiderman Miles Morale",
+    title: "Marvel's Spiderman Miles Morales",
     text: "Experience the rise of Miles Morales as the new hero masters incredible, explosive new powers to become his own Spider-Man.",
   },
   {

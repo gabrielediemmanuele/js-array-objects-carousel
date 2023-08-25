@@ -26,8 +26,22 @@
   height: 100%;
   object-fit: cover;
   display: none;
+  position: relative;
+}
+.front-cont .text-cont {
+  position: absolute;
+  bottom: 15px;
+  text-align: right;
+  right: 15px;
+  color: white;
+  background-color: rgba(0, 0, 0, 0.7);
+  padding: 10px;
+  border-radius: 10px;
 }
 
+.text-cont > p {
+  font-size: 12px;
+}
 .images {
   width: 100%;
   height: 100%;
