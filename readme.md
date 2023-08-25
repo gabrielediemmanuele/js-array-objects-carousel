@@ -36,3 +36,15 @@ Aggiungere funzionalità di autoplay: dopo un certo periodo di tempo (3 secondi)
 Aggiungere bottoni di start/stop e di inversione del meccanismo di autoplay.
 
 ## STEPS
+
+1. Prima di tutto, creo la disposizione per stabilire come andranno inserite le immagini.
+
+   - Creo un container principale che dividerò in due spazi:
+     - Il container frontale che contiene l'immagine in risalto.
+     - Il container laterale che contiene i sotto-container delle immagini da scorrere.
+     - In più ci saranno due piccoli container che saranno per le frecce.
+
+2. Implementare le immagini e il testo tramite l'array presente su js.
+   - Collegare prima di tutto il js al dom.
+   - eventListener al click dell'immagine che fà scorrere le immagini..
+3. ciclo infinito ?
