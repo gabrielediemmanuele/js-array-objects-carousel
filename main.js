@@ -38,7 +38,11 @@ let activeSlide = 0;
 upArrow.addEventListener("click", function () {
   document.querySelector(".front-cont.active").classList.remove("active");
 
-  activeSlide <= images.length ? activeSlide-- : (activeSlide = 0);
+  activeSlide--;
+
+  if (activeSlide < 0) {
+    activeSlide = mainContainer.length - 1;
+  }
 
   mainContainer[activeSlide].classList.add("active");
 });
@@ -46,7 +50,11 @@ upArrow.addEventListener("click", function () {
 downArrow.addEventListener("click", function () {
   document.querySelector(".front-cont.active").classList.remove("active");
 
-  activeSlide <= images.length ? activeSlide++ : (activeSlide = 0);
+  activeSlide++;
+
+  if (activeSlide >= mainContainer.length) {
+    activeSlide = 0;
+  }
 
   mainContainer[activeSlide].classList.add("active");
 });
@@ -59,3 +67,5 @@ associare active */
     } else {
         index = 0;
     } */
+//! activeSlide <= mainContainer.length ? activeSlide-- : (activeSlide = 0); */
+//! activeSlide <= mainContainer.length ? activeSlide++ : (activeSlide = 0); */
