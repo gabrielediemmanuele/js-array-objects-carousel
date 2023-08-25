@@ -1,0 +1,66 @@
+/*debug*/
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+.main-cont {
+  width: 80%;
+  height: 250px;
+  border: 2px solid red;
+  margin: 50px auto;
+  display: flex;
+}
+/*front img css*/
+.front-image-cont {
+  width: 80%;
+  height: 100%;
+  border: 2px solid green;
+}
+
+.images {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.right-image-cont {
+  width: 20%;
+  height: 100%;
+  border: 2px solid blue;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.right-image-cont > .slot {
+  width: 100%;
+  height: 20%;
+  border: 2px solid orange;
+}
+
+.right-image-cont > .arrow-controls {
+  width: 30px;
+  height: 30px;
+  border: 1px solid greenyellow;
+
+  position: absolute;
+  border-radius: 50%;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: black;
+}
+
+.arrow-controls.topside {
+  top: 5px;
+  z-index: 10;
+}
+
+.arrow-controls.bottomside {
+  bottom: 7px;
+  z-index: 10;
+}
