@@ -38,7 +38,7 @@ let activeSlide = 0;
 upArrow.addEventListener("click", function () {
   document.querySelector(".front-cont.active").classList.remove("active");
 
-  activeSlide < images.length ? activeSlide-- : (activeSlide = 0);
+  activeSlide <= images.length ? activeSlide-- : (activeSlide = 0);
 
   mainContainer[activeSlide].classList.add("active");
 });
@@ -46,7 +46,7 @@ upArrow.addEventListener("click", function () {
 downArrow.addEventListener("click", function () {
   document.querySelector(".front-cont.active").classList.remove("active");
 
-  activeSlide < images.length ? activeSlide++ : (activeSlide = 0);
+  activeSlide <= images.length ? activeSlide++ : (activeSlide = 0);
 
   mainContainer[activeSlide].classList.add("active");
 });
