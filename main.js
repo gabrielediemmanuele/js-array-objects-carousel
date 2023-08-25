@@ -27,7 +27,35 @@ const images = [
 ];
 
 //* Elementi di possibile interesse
-const frontContainer = document.getElementById("front-img-cont");
+const mainContainer = document.getElementsByClassName("front-cont");
 const rightContainer = document.getElementById("right-img-cont");
 const upArrow = document.getElementById("arrow-up");
-const upDown = document.getElementById("arrow-down");
+const downArrow = document.getElementById("arrow-down");
+
+//* Dichiarare la slide attiva
+let activeSlide = 0;
+
+upArrow.addEventListener("click", function () {
+  document.querySelector(".front-cont.active").classList.remove("active");
+
+  activeSlide < images.length ? activeSlide-- : (activeSlide = 0);
+
+  mainContainer[activeSlide].classList.add("active");
+});
+
+downArrow.addEventListener("click", function () {
+  document.querySelector(".front-cont.active").classList.remove("active");
+
+  activeSlide < images.length ? activeSlide++ : (activeSlide = 0);
+
+  mainContainer[activeSlide].classList.add("active");
+});
+
+/* togliere l'active dove sta
+devo individuare la nuova immagine 
+associare active */
+/* if (activeSlide < images.length) {
+        activeSlide++;
+    } else {
+        index = 0;
+    } */
