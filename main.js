@@ -27,7 +27,7 @@ const images = [
 ];
 
 //* Elementi di possibile interesse
-const mainContainer = document.getElementsByClassName("front-cont");
+const mainContainer = document.getElementById("front-img-cont");
 const rightContainer = document.getElementById("right-img-cont");
 const upArrow = document.getElementById("arrow-up");
 const downArrow = document.getElementById("arrow-down");
@@ -35,37 +35,93 @@ const downArrow = document.getElementById("arrow-down");
 //* Dichiarare la slide attiva
 let activeSlide = 0;
 
-upArrow.addEventListener("click", function () {
-  document.querySelector(".front-cont.active").classList.remove("active");
+//* Per ogni slide ?
+images.forEach((slide, index) => {
+  //* Nodo html
+  const imagesElement = document.createElement("div");
+  imagesElement.classList.add("front-cont");
 
-  activeSlide--;
+  //* Aggiungere la classe Active.. se è la prima..
+  if (index == activeSlide) imagesElement.classList.add("active");
 
-  if (activeSlide < 0) {
-    activeSlide = mainContainer.length - 1;
-  }
+  //* genero html interno
+  imagesElement.innerHTML = ` 
+  <div class="text-cont">
+    <h2>${slide.title}</h2>
+    <p>${slide.text}</p>
+  </div>
+  
+  <img class='images' src="${slide.image}" alt="" /> `;
 
-  mainContainer[activeSlide].classList.add("active");
+  //* Aggiungo il nodo slideElement all'oggetto slide
+  slide.slideNode = imagesElement;
+
+  //* Creo la miniatura
+  const thumbElement = document.createElement("div");
+  thumbElement.classList.add("slot", "filtered");
+  thumbElement.innerHTML = `<img class='images' src="${slide.image}" alt="" />`;
+  thumbElement.setAttribute("data-index", index);
+
+  //* aggiungere Active se è la prima
+  if (index == activeSlide) thumbElement.classList.add("active");
+
+  //* Gestisco il click sulla miniatura
+  thumbElement.addEventListener("click", function () {
+    //recupero indice cliccato
+    const index = this.getAttribute("data-index");
+
+    //* attivo la slide corrispondente all'indice recuperato
+    goToSlide(index);
+  });
+
+  //* aggiungo il nodo thumb all'oggetto slide
+  slide.thumbNode = thumbElement;
+
+  //* la slide e la miniatura nei relativi container ?
+  mainContainer.append(imagesElement);
+  rightContainer.append(thumbElement);
 });
 
-downArrow.addEventListener("click", function () {
-  document.querySelector(".front-cont.active").classList.remove("active");
+//* funzioni per up & down arrow..
+function goNext() {
+  let nextIndex = activeSlide + 1;
+  if (nextIndex >= images.length) nextIndex = 0;
 
-  activeSlide++;
+  //* slide selezionata
+  goToSlide(nextIndex);
+}
+//* slide precedente
+function goPrev() {
+  let prevIndex = activeSlide - 1;
+  if (prevIndex < 0) prevIndex = images.length - 1;
 
-  if (activeSlide >= mainContainer.length) {
-    activeSlide = 0;
-  }
+  // slide selezionata
+  goToSlide(prevIndex);
+}
 
-  mainContainer[activeSlide].classList.add("active");
-});
+//* funzione che attiva la slide dato il suo indice
+function goToSlide(index) {
+  // rimuovere classe active da slide e miniatura correnti
+  const oldSlide = images[activeSlide].slideNode;
+  const oldSlideThumb = images[activeSlide].thumbNode;
+  oldSlide.classList.remove("active");
+  oldSlideThumb.classList.remove("active", "border-active");
+  oldSlideThumb.classList.add("filtered");
 
-/* togliere l'active dove sta
-devo individuare la nuova immagine 
-associare active */
-/* if (activeSlide < images.length) {
-        activeSlide++;
-    } else {
-        index = 0;
-    } */
-//! activeSlide <= mainContainer.length ? activeSlide-- : (activeSlide = 0); */
-//! activeSlide <= mainContainer.length ? activeSlide++ : (activeSlide = 0); */
+  //settare la nuova slide attiva
+  activeSlide = index;
+
+  // settare le classi active su slide e miniatura correnti
+  const newSlide = images[activeSlide].slideNode;
+  const newSlideThumb = images[activeSlide].thumbNode;
+  newSlide.classList.add("active");
+  newSlideThumb.classList.add("active", "border-active");
+  newSlideThumb.classList.remove("filtered");
+}
+// * GESTISCO I CLICK SUI PULSANTI NEXT E PREV
+upArrow.addEventListener("click", goPrev);
+downArrow.addEventListener("click", goNext);
+//*
+
+//! set autoplay..
+/* const autoPlay = setInterval(goNext, 2000); */
