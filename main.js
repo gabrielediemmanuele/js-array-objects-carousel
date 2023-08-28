@@ -53,14 +53,14 @@ images.forEach((slide, index) => {
   
   <img class='images' src="${slide.image}" alt="" /> `;
 
-  //* Aggiungo il nodo slideElement all'oggetto slide
+  //! Aggiungo il nodo slideElement all'oggetto slide
   slide.slideNode = imagesElement;
 
   //* Creo la miniatura
   const thumbElement = document.createElement("div");
   thumbElement.classList.add("slot", "filtered");
   thumbElement.innerHTML = `<img class='images' src="${slide.image}" alt="" />`;
-  thumbElement.setAttribute("data-index", index);
+  thumbElement.setAttribute("data-index", index); //! da capire
 
   //* aggiungere Active se è la prima
   if (index == activeSlide) thumbElement.classList.add("active");
@@ -68,10 +68,10 @@ images.forEach((slide, index) => {
   //* Gestisco il click sulla miniatura
   thumbElement.addEventListener("click", function () {
     //recupero indice cliccato
-    const index = this.getAttribute("data-index");
+    const index = this.getAttribute("data-index"); //! da capire
 
     //* attivo la slide corrispondente all'indice recuperato
-    goToSlide(index);
+    goToSlide(index); //! da capire
   });
 
   //* aggiungo il nodo thumb all'oggetto slide
